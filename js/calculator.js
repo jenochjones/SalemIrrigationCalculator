@@ -7,5 +7,8 @@ function ready(readyListener) {
 };
 
 ready(function () {
-    console.log('ready')
+    console.log('ready');
+    document.getElementById("lot-size").addEventListener("input", (event) => {
+        console.log(event.target.value);
+    })
 });
