@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Irrigation Calculator</title>
+
+	<link rel="stylesheet" href="css/irrigationcalculator.css">
+
+</head>
+<body>
+    <div id="calculator">
+		<div id="clac-header">
+			<h2>Salem City Residential Irrigation Calculator</h2>
+			<p>(Non-Drought and Non-Water Shortage Conditions)</p>
+		</div>
+		<div id="table-div">
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>My lot size</p>
+				</div>
+				<div class="cell-right">
+					<input id="lot-size" class="cell-box" type="number" min="0">
+					<div>
+						<p>acres</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>My 12 Month base rate</p>
+				</div>
+				<div class="cell-right">
+					<div id="base-rate" class="cell-box">
+
+					</div>
+					<div>
+						<p>per month</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>My monthly water allotment</p>
+				</div>
+				<div class="cell-right">
+					<div id="water-allotment" class="cell-box">
+
+					</div>
+					<div>
+						<p>thousand gallons</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>Water Usage</p>
+				</div>
+				<div class="cell-right">
+					<input id="water-usage" class="cell-box" type="number" min="0">
+					<div>
+						<p>thousand gallons</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>Tier 1 (up to 75% of allotment)</p>
+				</div>
+				<div class="cell-right">
+					<div id="tier1" class="cell-box">
+
+					</div>
+					<div>
+						<p>$0.35 per 1,000 gallons</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>Tier 2 (75% to 100% of allotment)</p>
+				</div>
+				<div class="cell-right">
+					<div id="tier2" class="cell-box">
+
+					</div>
+					<div>
+						<p>$1.00 per 1,000 gallons</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>Tier 3 (100% to 150% of allotment)</p>
+				</div>
+				<div class="cell-right">
+					<div id="tier3" class="cell-box">
+
+					</div>
+					<div>
+						<p>$1.25 per 1,000 gallons</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>Tier 4 (150% to 200% of allotment)</p>
+				</div>
+				<div class="cell-right">
+					<div id="tier4" class="cell-box">
+
+					</div>
+					<div>
+						<p>$2.04 per 1,000 gallons</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>Tier 5 (200% to 250% of allotment)</p>
+				</div>
+				<div class="cell-right">
+					<div id="tier5" class="cell-box">
+
+					</div>
+					<div>
+						<p>$3.09 per 1,000 gallons</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>Tier 6 (above 250% of allotment)</p>
+				</div>
+				<div class="cell-right">
+					<div id="tier6" class="cell-box">
+
+					</div>
+					<div>
+						<p>$3.95 per 1,000 gallons</p>
+					</div>
+				</div>
+			</div>
+			<div class="calc-row">
+				<div class="cell-left">
+					<p>Est Monthly Secondary Water Bill</p>
+				</div>
+				<div class="cell-right">
+					<div id="est-bill" class="cell-box">
+
+					</div>
+					<div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</body>
+</html>
