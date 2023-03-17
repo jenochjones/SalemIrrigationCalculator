@@ -7,8 +7,15 @@ function ready(readyListener) {
 };
 
 ready(function () {
+
+
+
     console.log('ready');
     document.getElementById("lot-size").addEventListener("input", (event) => {
+        
+    })
+
+    document.getElementById("water-usage").addEventListener("input", (event) => {
         console.log(event.target.value);
     })
 });
