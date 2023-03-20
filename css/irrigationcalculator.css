@@ -120,49 +120,6 @@ p {
     flex-direction: row;
 }
 
-@media only screen and (max-width: 850px) {
-    /* For mobile phones: */
-    #main-container {
-        width: 70vw !important;
-    }
-    #calculator {
-        margin: 1em !important;
-        width: calc(100% - 2em) !important;
-    }
-    #clac-header {
-        margin: 1em !important;
-        width: calc(100% - 2em) !important;
-    }
-
-    .calc-row {
-        flex-direction: column !important;
-        align-items: center !important;
-        margin-bottom: 1em !important;
-    }
-
-    .cell-left {
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center;
-    }
-    
-    .cell-right {
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center;
-    }
-
-    .cell-box {
-        width: 100% !important;
-        text-align: center;
-    }
-
-  }
-
 .cell-left {
     width: 50%;
 }
@@ -233,4 +190,48 @@ p {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+  }
+
+
+  @media only screen and (max-width: 850px) {
+    /* For mobile phones: */
+    #main-container {
+        width: 70vw !important;
+    }
+    #calculator {
+        margin: 1em !important;
+        width: calc(100% - 2em) !important;
+    }
+    #clac-header {
+        margin: 1em !important;
+        width: calc(100% - 2em) !important;
+    }
+
+    .calc-row {
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-bottom: 1em !important;
+    }
+
+    .cell-left {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+    }
+    
+    .cell-right {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+    }
+
+    .cell-box {
+        width: 100% !important;
+        text-align: center;
+    }
+
   }

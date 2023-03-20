@@ -41,9 +41,9 @@ ready(function () {
     };
 
     const school2inchTiers = {
-        tier1: 50000,
-        tier2: 151000,
-        tier3: 249000,
+        tier1: 49000,
+        tier2: 150000,
+        tier3: 293000,
     };
 
     const school4inchRates = {
@@ -54,9 +54,9 @@ ready(function () {
     };
 
     const school4inchTiers = {
-        tier1: 151000,
-        tier2: 471000,
-        tier3: 921000,
+        tier1: 150000,
+        tier2: 470000,
+        tier3: 920000,
     };
 
     const school6inchRates = {
@@ -67,9 +67,9 @@ ready(function () {
     };
 
     const school6inchTiers = {
-        tier1: 301000,
+        tier1: 300000,
         tier2: 940000,
-        tier3: 1831000,
+        tier3: 1830000,
     };
 
     let calculateBaseRate = function (myMeter) {
@@ -158,9 +158,9 @@ ready(function () {
         }
 
         document.getElementById("tier1description").innerHTML = `Tier 1 (0 to ${currentTiers["tier1"] / 1000} thousand gallons)`;
-        document.getElementById("tier2description").innerHTML = `Tier 2 (${currentTiers["tier1"] / 1000} to ${currentTiers["tier2"] / 1000} thousand gallons)`;
-        document.getElementById("tier3description").innerHTML = `Tier 3 (${currentTiers["tier2"] / 1000} to ${currentTiers["tier3"] / 1000} thousand gallons)`;
-        document.getElementById("tier4description").innerHTML = `Tier 4 (${currentTiers["tier3"] / 1000} thousand gallons and above)`;
+        document.getElementById("tier2description").innerHTML = `Tier 2 (${currentTiers["tier1"] / 1000 + 1} to ${currentTiers["tier2"] / 1000} thousand gallons)`;
+        document.getElementById("tier3description").innerHTML = `Tier 3 (${currentTiers["tier2"] / 1000 + 1} to ${currentTiers["tier3"] / 1000} thousand gallons)`;
+        document.getElementById("tier4description").innerHTML = `Tier 4 (${currentTiers["tier3"] / 1000 + 1} thousand gallons and above)`;
 
         document.getElementById("tier1").innerHTML = `<p>$${Math.round(tierOne * 100) / 100}</p>`;
         document.getElementById("tier2").innerHTML = `<p>$${Math.round(tierTwo * 100) / 100}</p>`;
@@ -181,6 +181,7 @@ ready(function () {
     });
 
     document.getElementById("water-usage").addEventListener("input", (event) => {
+        event.target.value = event.target.value.replace(/[^0-9]/g, "");
         const waterUsage = parseFloat(event.target.value) * 1000;
         calculateTiers(waterUsage);
     });
