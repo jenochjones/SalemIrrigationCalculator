@@ -29,39 +29,79 @@ ready(function () {
         tier3: 80000,
     }
 
-    const school_2inch_rates = {
+    const school2inchRates = {
         tier1: 0.50,
         tier2: 1.05,
         tier3: 1.50,
         tier4: 2.20
     }
 
-    const school_4inch_rates = {
+    const school2inchTiers = {
+        tier1: 50000,
+        tier2: 151000,
+        tier3: 249000,
+    }
+
+    const school4inchRates = {
         tier1: 0.50,
         tier2: 1.05,
         tier3: 1.50,
         tier4: 2.20
     }
 
-    const school_6inch_rates = {
+    const school4inchTiers = {
+        tier1: 151000,
+        tier2: 471000,
+        tier3: 92100,
+    }
+
+    const school6inchRates = {
         tier1: 0.50,
         tier2: 1.05,
         tier3: 1.50,
         tier4: 2.20
+    }
+
+    const school6inchTiers = {
+        tier1: 301000,
+        tier2: 940000,
+        tier3: 1831000,
     }
 
     let calculateTiers = function (waterUsage) {
-        const isSchool = document.getElementById("school-checkbox").value;
+
+        let isSchool;
+        let currentRates;
+        let currentTiers;
+        
+        if (document.getElementById("school-checkbox").checked) {
+            isSchool = true;
+        } else {
+            isSchool = false;
+        }
 
         let myMeter = document.getElementById("meter-size").value;
         const monthlyRate = baseRate[myMeter];
 
-        console.log(waterUsage)
-        console.log(isSchool)
-
-        const currentTiers = residentialTiers;
-        const currentRates = residentialRates;
-
+        if (isSchool) {
+            if (Number(myMeter) === 2) {
+                currentTiers = school2inchTiers;
+                currentRates = school2inchRates;
+            } else if (Number(myMeter) === 4) {
+                currentTiers = school4inchTiers;
+                currentRates = school4inchRates;
+            } else if (Number(myMeter) === 6) {
+                currentTiers = school6inchTiers;
+                currentRates = school6inchRates;
+            } else {
+                currentTiers = residentialTiers;
+                currentRates = residentialRates;
+            }
+        } else {
+            currentTiers = residentialTiers;
+            currentRates = residentialRates;
+        }
+        
         let tierOne = 0.00;
         let tierTwo = 0.00;
         let tierThree = 0.00;
@@ -86,16 +126,20 @@ ready(function () {
             } else if (waterUsage <= currentTiers["tier3"]) {
                 tierOne = currentTiers["tier1"] * currentRates["tier1"] / 1000;
                 tierTwo = (currentTiers["tier2"] - currentTiers["tier1"]) * currentRates["tier2"] / 1000;
-                tierThree = waterUsage * currentRates["tier3"] / 1000;
+                tierThree = (waterUsage - currentTiers["tier2"]) * currentRates["tier3"] / 1000;
                 tierFour = 0.00;
             }  else {
                 tierOne = currentTiers["tier1"] * currentRates["tier1"] / 1000;
                 tierTwo = (currentTiers["tier2"] - currentTiers["tier1"]) * currentRates["tier2"] / 1000;
                 tierThree = (currentTiers["tier3"] - currentTiers["tier2"]) * currentRates["tier3"] / 1000;
-                tierFour = waterUsage * currentRates["tier4"] / 1000;
+                tierFour = (waterUsage - currentTiers["tier3"]) * currentRates["tier4"] / 1000;
             } 
         }
 
+        document.getElementById("tier1description").value = `$${currentRates["tier1"]} per 1,000 gallons`;
+        document.getElementById("tier2description").value = `$${currentRates["tier2"]} per 1,000 gallons`;
+        document.getElementById("tier3description").value = `$${currentRates["tier3"]} per 1,000 gallons`;
+        document.getElementById("tier4description").value = `$${currentRates["tier4"]} per 1,000 gallons`;
 
         document.getElementById("tier1").innerHTML = `<p>$${Math.round(tierOne * 100) / 100}</p>`;
         document.getElementById("tier2").innerHTML = `<p>$${Math.round(tierTwo * 100) / 100}</p>`;
@@ -122,5 +166,13 @@ ready(function () {
     document.getElementById("water-usage").addEventListener("input", (event) => {
         const waterUsage = parseFloat(event.target.value) * 1000;
         calculateTiers(waterUsage);
+    })
+
+    document.getElementById("school-checkbox").addEventListener("change", (event) => {
+        if (document.getElementById("school-checkbox").checked) {
+            document.getElementById("meter-size").innerHTML = "<option>2</option><option>4</option><option>6</option>"
+        } else {
+            document.getElementById("meter-size").innerHTML = "<option>1</option><option>1.5</option><option>2</option>"
+        }
     })
 });
