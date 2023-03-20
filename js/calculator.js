@@ -8,76 +8,97 @@ function ready(readyListener) {
 
 ready(function () {
 
-    const baseRate = {
+    const baseRateResidential = {
         1: 30.13,
         1.5: 41.79,
-        2: 53.25,
-        4: 53.25,
-        6: 53.25
-    }
+        2: 53.82,
+    };
+
+    const baseRateSchool = {
+        2: 68.62,
+        4: 272.95,
+        6: 613.37,
+    };
 
     const residentialRates = {
         tier1: 0.50,
         tier2: 1.05,
         tier3: 1.50,
         tier4: 2.20
-    }
+    };
 
     const residentialTiers = {
         tier1: 20000,
         tier2: 50000,
         tier3: 80000,
-    }
+    };
 
     const school2inchRates = {
         tier1: 0.50,
         tier2: 1.05,
         tier3: 1.50,
         tier4: 2.20
-    }
+    };
 
     const school2inchTiers = {
         tier1: 50000,
         tier2: 151000,
         tier3: 249000,
-    }
+    };
 
     const school4inchRates = {
         tier1: 0.50,
         tier2: 1.05,
         tier3: 1.50,
         tier4: 2.20
-    }
+    };
 
     const school4inchTiers = {
         tier1: 151000,
         tier2: 471000,
-        tier3: 92100,
-    }
+        tier3: 921000,
+    };
 
     const school6inchRates = {
         tier1: 0.50,
         tier2: 1.05,
         tier3: 1.50,
         tier4: 2.20
-    }
+    };
 
     const school6inchTiers = {
         tier1: 301000,
         tier2: 940000,
         tier3: 1831000,
-    }
+    };
+
+    let calculateBaseRate = function (myMeter) {
+        let baseRate;
+        let waterUsage = parseFloat(document.getElementById("water-usage").value) * 1000;
+
+        if (document.getElementById("school-checkbox").checked) {
+            baseRate = baseRateSchool;
+        } else {
+            baseRate = baseRateResidential;
+        }
+
+        document.getElementById("base-rate").innerHTML = `<p>$${baseRate[myMeter]}</p>`;
+        calculateTiers(waterUsage);
+    };
 
     let calculateTiers = function (waterUsage) {
 
         let isSchool;
+        let baseRate;
         let currentRates;
         let currentTiers;
         
         if (document.getElementById("school-checkbox").checked) {
             isSchool = true;
+            baseRate = baseRateSchool
         } else {
             isSchool = false;
+            baseRate = baseRateResidential;
         }
 
         let myMeter = document.getElementById("meter-size").value;
@@ -136,10 +157,10 @@ ready(function () {
             } 
         }
 
-        document.getElementById("tier1description").value = `$${currentRates["tier1"]} per 1,000 gallons`;
-        document.getElementById("tier2description").value = `$${currentRates["tier2"]} per 1,000 gallons`;
-        document.getElementById("tier3description").value = `$${currentRates["tier3"]} per 1,000 gallons`;
-        document.getElementById("tier4description").value = `$${currentRates["tier4"]} per 1,000 gallons`;
+        document.getElementById("tier1description").innerHTML = `Tier 1 (0 to ${currentTiers["tier1"] / 1000} thousand gallons)`;
+        document.getElementById("tier2description").innerHTML = `Tier 2 (${currentTiers["tier1"] / 1000} to ${currentTiers["tier2"] / 1000} thousand gallons)`;
+        document.getElementById("tier3description").innerHTML = `Tier 3 (${currentTiers["tier2"] / 1000} to ${currentTiers["tier3"] / 1000} thousand gallons)`;
+        document.getElementById("tier4description").innerHTML = `Tier 4 (${currentTiers["tier3"] / 1000} thousand gallons and above)`;
 
         document.getElementById("tier1").innerHTML = `<p>$${Math.round(tierOne * 100) / 100}</p>`;
         document.getElementById("tier2").innerHTML = `<p>$${Math.round(tierTwo * 100) / 100}</p>`;
@@ -147,26 +168,22 @@ ready(function () {
         document.getElementById("tier4").innerHTML = `<p>$${Math.round(tierFour * 100) / 100}</p>`;
 
         updateMonthlyBill(monthlyRate, tierOne, tierTwo, tierThree, tierFour);
-    }
+    };
 
     let updateMonthlyBill = function (monthlyRate, tierOne, tierTwo, tierThree, tierFour) {
         const monthlyBill = monthlyRate + tierOne + tierTwo + tierThree + tierFour;
         document.getElementById("est-bill").innerHTML = `<p>$${Math.round(monthlyBill * 100) / 100}</p>`;
-    }
+    };
 
-    console.log('ready');
     document.getElementById("meter-size").addEventListener("change", (event) => {
         let myMeter = event.target.value;
-        let waterUsage = parseFloat(document.getElementById("water-usage").value) * 1000;
-
-        document.getElementById("base-rate").innerHTML = `<p>$${baseRate[myMeter]}</p>`;
-        calculateTiers(waterUsage);
-    })
+        calculateBaseRate(myMeter);
+    });
 
     document.getElementById("water-usage").addEventListener("input", (event) => {
         const waterUsage = parseFloat(event.target.value) * 1000;
         calculateTiers(waterUsage);
-    })
+    });
 
     document.getElementById("school-checkbox").addEventListener("change", (event) => {
         if (document.getElementById("school-checkbox").checked) {
@@ -174,5 +191,6 @@ ready(function () {
         } else {
             document.getElementById("meter-size").innerHTML = "<option>1</option><option>1.5</option><option>2</option>"
         }
-    })
+        calculateBaseRate(document.getElementById("meter-size").value);
+    });
 });
