@@ -33,6 +33,8 @@
 					Salem City has created an irrigation calculator to help customers estimate the cost of 
 					their bill. Enter your meter size to determine the base monthly payment and estimate what 
 					your bill would be at different water usage amounts. 
+					<br><br>
+					* Note: Most residential meeters are 1 inch. 
 				</p>
 			</div>
 	
@@ -44,7 +46,7 @@
 				<div id="table-div">
 					<div class="calc-row">
 						<div class="cell-left">
-							<p>Your meter size</p>
+							<p>Your meter size *</p>
 						</div>
 						<div class="cell-right">
 							<select id="meter-size" class="cell-box">
@@ -84,12 +86,12 @@
 					</div>
 					<div class="calc-row">
 						<div class="cell-left">
-							<p>Water usage</p>
+							<p>Water usage (per thousand gallons)</p>
 						</div>
 						<div class="cell-right">
 							<input id="water-usage" class="cell-box" type="number" min="0" step="1">
 							<div>
-								<p>thousand gallons</p>
+								<p><b>thousand gallons</b></p>
 							</div>
 						</div>
 					</div>
