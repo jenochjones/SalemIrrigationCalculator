@@ -104,7 +104,6 @@ ready(function () {
         } else {
             isSchool = false;
             baseRate = baseRateResidential;
-            
         }
         */
 
@@ -196,12 +195,14 @@ ready(function () {
         calculateTiers(waterUsage);
     });
 
-    /*document.getElementById("school-checkbox").addEventListener("change", (event) => {
+    /*
+    document.getElementById("school-checkbox").addEventListener("change", (event) => {
         if (document.getElementById("school-checkbox").checked) {
             document.getElementById("meter-size").innerHTML = "<option>2</option><option>4</option><option>6</option>"
         } else {
             document.getElementById("meter-size").innerHTML = "<option>1</option><option>1.5</option><option>2</option>"
         }
         calculateBaseRate(document.getElementById("meter-size").value);
-    });*/
+    });
+    */
 });
