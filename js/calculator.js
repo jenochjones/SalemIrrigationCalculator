@@ -104,6 +104,7 @@ ready(function () {
         } else {
             isSchool = false;
             baseRate = baseRateResidential;
+            
         }
         */
 
