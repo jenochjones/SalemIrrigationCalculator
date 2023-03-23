@@ -76,14 +76,6 @@ ready(function () {
         let baseRate;
         let waterUsage = parseFloat(document.getElementById("water-usage").value) * 1000;
 
-        /*
-        if (document.getElementById("school-checkbox").checked) {
-            baseRate = baseRateSchool;
-        } else {
-            baseRate = baseRateResidential;
-        }
-        */
-
         baseRate = baseRateResidential;
 
         document.getElementById("base-rate").innerHTML = `<p>$${baseRate[myMeter]}</p>`;
@@ -96,16 +88,6 @@ ready(function () {
         let baseRate;
         let currentRates;
         let currentTiers;
-        
-        /*
-        if (document.getElementById("school-checkbox").checked) {
-            isSchool = true;
-            baseRate = baseRateSchool
-        } else {
-            isSchool = false;
-            baseRate = baseRateResidential;
-        }
-        */
 
         isSchool = false;
         baseRate = baseRateResidential;
@@ -195,14 +177,4 @@ ready(function () {
         calculateTiers(waterUsage);
     });
 
-    /*
-    document.getElementById("school-checkbox").addEventListener("change", (event) => {
-        if (document.getElementById("school-checkbox").checked) {
-            document.getElementById("meter-size").innerHTML = "<option>2</option><option>4</option><option>6</option>"
-        } else {
-            document.getElementById("meter-size").innerHTML = "<option>1</option><option>1.5</option><option>2</option>"
-        }
-        calculateBaseRate(document.getElementById("meter-size").value);
-    });
-    */
 });
